@@ -11,6 +11,8 @@ class HomeWork extends StatefulWidget {
 }
 
 class _HomeWorkState extends State<HomeWork> {
+  var height = AppBar().preferredSize.height;
+
   final List<HomeWorkDetail> homeWorkList = HomeWorkDetail.getHomeWorkDetail();
 
   static int _japanese = 0;
@@ -41,15 +43,16 @@ class _HomeWorkState extends State<HomeWork> {
       onTap: () => {
 //                     _navigateToNext(context, homeworkdetail.subject)
       },
-      child: Padding(
-        padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 10),
+//      child: Padding(
+//        padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 10),
         child: Container(
           width: MediaQuery.of(context).size.width,
-          height: 50.0,
+          height: (MediaQuery.of(context).size.height-height)/5,
           //margin: EdgeInsets.all(10.0),
           decoration: BoxDecoration(
               color: HexColor(homeworkdetail.color).withOpacity(0.5),
-              borderRadius: BorderRadius.circular(7.0)),
+//              borderRadius: BorderRadius.circular(7.0)
+              ),
           child: Center(
             child: Text(
               homeworkdetail.subject,
@@ -57,7 +60,7 @@ class _HomeWorkState extends State<HomeWork> {
             ),
           ),
         ),
-      ),
+//      ),
     );
   }
 //  void _navigateToNext(BuildContext context, String sub) {
