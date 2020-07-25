@@ -12,7 +12,6 @@ class HomeWork extends StatefulWidget {
 
 class _HomeWorkState extends State<HomeWork> {
   final List<HomeWorkDetail> homeWorkList = HomeWorkDetail.getHomeWorkDetail();
-  List subject = ["国語", "数学", "英語", "社会", "理科"];
 
   static int _japanese = 0;
   static int _math = 0;
@@ -20,16 +19,15 @@ class _HomeWorkState extends State<HomeWork> {
   static int _socialStudies = 0;
   static int _science = 0;
 
-  List<int> koma = [_japanese, _math, _english, _socialStudies, _science];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: Text("強化したい科目")),
+        title: Center(child: Text("今週強化する科目")),
       ),
       body: ListView.builder(
-          itemCount: subject.length,
+          itemCount: homeWorkList.length,
           itemBuilder: (BuildContext context, int index) {
             return Stack(children: <Widget>[
               homeWorkCheck(homeWorkList[index], context),
@@ -39,41 +37,33 @@ class _HomeWorkState extends State<HomeWork> {
   }
 
   Widget homeWorkCheck(HomeWorkDetail homeworkdetail, BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 8.0, left: 20, right: 20),
-      child: Container(
-        color: HexColor(homeworkdetail.color).withOpacity(0.5),
-        child:
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(homeworkdetail.subject),
-                    Flexible(
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: TextField(
-                          keyboardType: TextInputType.numberWithOptions(decimal: true),
-                          decoration: InputDecoration(
-                            hintText: "コマ数",
-                          ),
-                          onChanged: (String value) {
-                            try {
-                              homeworkdetail.classes = int.parse(value);
-                            } catch (exception) {
-                              homeworkdetail.classes = 0;
-                            }
-                            debugPrint(
-                                "${homeworkdetail.subject} ${homeworkdetail.classes}");
-                            },
-                        ),
-                      ),
-                    ),
-                  ]),
+    return InkWell(
+      onTap: () => {
+//                     _navigateToNext(context, homeworkdetail.subject)
+      },
+      child: Padding(
+        padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 10),
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          height: 50.0,
+          //margin: EdgeInsets.all(10.0),
+          decoration: BoxDecoration(
+              color: HexColor(homeworkdetail.color).withOpacity(0.5),
+              borderRadius: BorderRadius.circular(7.0)),
+          child: Center(
+            child: Text(
+              homeworkdetail.subject,
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17.0),
             ),
+          ),
+        ),
       ),
     );
   }
+//  void _navigateToNext(BuildContext context, String sub) {
+//    Navigator.push(context, new MaterialPageRoute(builder: (context) =>
+//    new NewPage(sub: sub)));
+//  }
 }
 
 class HomeWorkDetail {
