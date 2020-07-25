@@ -80,10 +80,10 @@ class _WeekPlanPageState extends State<WeekPlanPage>
     return Scaffold(
       appBar: AppBar(
           title: Text('予定入力'),
-          bottom: TabBar(
+          bottom: new TabBar(
               controller: _tabController,
               tabs: weekData
-                  .map((w) => Tab(text: "${w.month}/${w.day}(${w.dayOfWeek})"))
+                  .map((w) => Tab(text: "${w.dayOfWeek}"))
                   .toList())),
       body: TabBarView(
           controller: _tabController,
@@ -93,24 +93,25 @@ class _WeekPlanPageState extends State<WeekPlanPage>
 }
 
 Widget DayPlan(dayOfWeek) {
-  List<bool> selectedBool = List.generate(28, (i) => false);
+  List<bool> selectedBool = List.generate(31, (i) => false);
 
-  final items = List<int>.generate(28, (i) => i);
-  final times = items
-      .map((i) => {
-            Text('${i + 7}:${(i.isOdd) ? '30' : '00'}',
-                textAlign: TextAlign.center, style: TextStyle(fontSize: 20.0)),
-          })
-      .toList();
+//  final items = List<int>.generate(28, (i) => i);
+//  final times = items
+//      .asMap().forEach((item, index) => {
+//            Text('${index + 7}:${(index.isOdd) ? '30' : '00'}',
+//                textAlign: TextAlign.center, style: TextStyle(fontSize: 20.0)),
+//      });
+
+
 
   return ListView.builder(
       scrollDirection: Axis.vertical,
-      padding: EdgeInsets.all(36.0),
+      padding: EdgeInsets.only(top: 3.0, bottom: 3.0),
       shrinkWrap: true,
       itemBuilder: (context, i) {
-        if (i < 28) {
+        if (i < 31) {
           return ListTile(
-            title: Text('${times[i]}'),
+            title: Text('${(7+(i-i%2)/2).round()}:${i.isOdd ? '30' : '00'}', textAlign: TextAlign.center, style: TextStyle(fontSize: 20.0)),
             selected: selectedBool[i],
             onTap: () {
               selectedBool[i] = selectedBool[i] ? false : true;
