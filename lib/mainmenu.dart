@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:team4/avatar/avatormenu.dart';
+import 'package:team4/kadai2.dart';
 
 class MainAppMenu extends StatefulWidget {
   @override
@@ -16,6 +17,8 @@ class _MainAppMenuState extends State<MainAppMenu> {
     "dinosaur_red",
     "dinosaur_yellow",
     ];
+
+  int dinosaurLevel = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -55,11 +58,21 @@ class _MainAppMenuState extends State<MainAppMenu> {
                         color: Colors.blueGrey.shade100,
                         style: BorderStyle.solid),
                     borderRadius: BorderRadius.circular(12.0)),
+                child: Center(
+                  child: Text(
+                    "Level.${dinosaurLevel + 1} ${dinosaurs[dinosaurLevel]}",
+                      style: TextStyle(
+                      color: Colors.blue,
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
               ),
               Spacer(flex: 1),
               Center(
                 child: Image.asset(
-                  "images/${dinosaurs[1]}.png",
+                  "images/${dinosaurs[dinosaurLevel]}.png",
                   fit: BoxFit.fill,
                   width: 250,
                   height: 250,
@@ -89,18 +102,18 @@ class _MainAppMenuState extends State<MainAppMenu> {
                     ),
                   ),
                   RaisedButton(
-//                    onPressed: () {
-//                      Navigator.of(context).push(
-//                        MaterialPageRoute(
-//                          builder: (context) {
-//                            return AvatarMenu();
-//                          },
-//                        ),
-//                      );
-//                    },
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return HomeWork();
+                          },
+                        ),
+                      );
+                    },
                     color: Colors.green,
                     child: Text(
-                      "Scene2",
+                      "学習課題",
                       style: TextStyle(
                         fontSize: 20.0,
                         color: Colors.white,
@@ -119,7 +132,7 @@ class _MainAppMenuState extends State<MainAppMenu> {
                     },
                     color: Colors.green,
                     child: Text(
-                      "Scene3",
+                      "アバター",
                       style: TextStyle(
                         fontSize: 20.0,
                         color: Colors.white,
