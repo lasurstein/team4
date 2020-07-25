@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:team4/avatar/avatormenu.dart';
 import 'package:team4/kadai2.dart';
+import 'package:team4/plan.dart';
 
 class MainAppMenu extends StatefulWidget {
   @override
@@ -8,7 +9,6 @@ class MainAppMenu extends StatefulWidget {
 }
 
 class _MainAppMenuState extends State<MainAppMenu> {
-
   final List dinosaurs = [
     "eggDinosaur",
     "dinosaur_blue",
@@ -16,7 +16,7 @@ class _MainAppMenuState extends State<MainAppMenu> {
     "dinosaur_green",
     "dinosaur_red",
     "dinosaur_yellow",
-    ];
+  ];
 
   int dinosaurLevel = 0;
 
@@ -60,8 +60,8 @@ class _MainAppMenuState extends State<MainAppMenu> {
                     borderRadius: BorderRadius.circular(12.0)),
                 child: Center(
                   child: Text(
-                    "Level.${dinosaurLevel + 1} ${dinosaurs[dinosaurLevel]}",
-                      style: TextStyle(
+                    "Level.${dinosaurLevel + 1} ${dinosaurs[dinosaurLevel].toString().toUpperCase()}",
+                    style: TextStyle(
                       color: Colors.blue,
                       fontSize: 20.0,
                       fontWeight: FontWeight.bold,
@@ -83,18 +83,18 @@ class _MainAppMenuState extends State<MainAppMenu> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   RaisedButton(
-//                    onPressed: () {
-//                      Navigator.of(context).push(
-//                        MaterialPageRoute(
-//                          builder: (context) {
-//                            return AvatarMenu();
-//                          },
-//                        ),
-//                      );
-//                    },
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return WeekPlanPage(); //予定入力のクラスを指定
+                          },
+                        ),
+                      );
+                    },
                     color: Colors.green,
                     child: Text(
-                      "Scene1",
+                      "予定入力",
                       style: TextStyle(
                         fontSize: 20.0,
                         color: Colors.white,
@@ -103,6 +103,19 @@ class _MainAppMenuState extends State<MainAppMenu> {
                   ),
                   RaisedButton(
                     onPressed: () {
+                      setState(() {
+                        dinosaurLevel = (dinosaurLevel + 1) % dinosaurs.length;
+                        Scaffold.of(context).showSnackBar(new SnackBar(
+                          content: new Text(
+                            "Dinosaur\'s Level UP!",
+                            style: TextStyle(
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          backgroundColor: Colors.redAccent.shade200,
+                        ));
+                      });
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (context) {
@@ -141,7 +154,9 @@ class _MainAppMenuState extends State<MainAppMenu> {
                   ),
                 ],
               ),
-              Spacer(flex: 1,),
+              Spacer(
+                flex: 1,
+              ),
             ],
           ),
         ),
@@ -149,4 +164,3 @@ class _MainAppMenuState extends State<MainAppMenu> {
     );
   }
 }
-
