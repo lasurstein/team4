@@ -137,34 +137,6 @@ class _AvatarMenu1State extends State<AvatarMenu1> {
                   borderRadius: BorderRadius.circular(12.0)),
               child: Column(
                 children: <Widget>[
-                  TextField(
-                    style: TextStyle(color: Colors.black, fontSize: 20.0),
-                    decoration: InputDecoration(
-                      //prefixText: "Dinosaur's name : ",
-                        prefixIcon: Icon(Icons.pets)),
-                    onChanged: (String value) {
-                      try {
-                        setState(() {
-                          dinosaurName = value;
-                          Scaffold.of(context).showSnackBar(new SnackBar(
-                            content: new Text(
-                              "Dinosaur\'s name chaged!",
-                              style: TextStyle(
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            backgroundColor: Colors.redAccent.shade200,
-                          ));
-                        });
-                        //_billAmount = double.parse(value);
-                      } catch (exception) {
-                        setState(() {
-                          dinosaurName = "pochi";
-                        });
-                      }
-                    },
-                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
@@ -312,7 +284,35 @@ class _AvatarMenu1State extends State<AvatarMenu1> {
                 ],
               ),
             ),
-            Spacer(),
+//            Spacer(),
+            TextField(
+              style: TextStyle(color: Colors.black, fontSize: 20.0),
+              decoration: InputDecoration(
+                //prefixText: "Dinosaur's name : ",
+                  prefixIcon: Icon(Icons.pets)),
+              onChanged: (String value) {
+                try {
+                  setState(() {
+                    dinosaurName = value;
+                    Scaffold.of(context).showSnackBar(new SnackBar(
+                      content: new Text(
+                        "Dinosaur\'s name chaged!",
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      backgroundColor: Colors.redAccent.shade200,
+                    ));
+                  });
+                  //_billAmount = double.parse(value);
+                } catch (exception) {
+                  setState(() {
+                    dinosaurName = "pochi";
+                  });
+                }
+              },
+            ),
           ],
         ),
       ),
@@ -370,7 +370,7 @@ class AvatarMenu2 extends StatelessWidget {
                         child:
                     Center(
                       child: Image.asset(
-                        "images/${dinosaurs[dinosaurLevel]}.png",
+                        "images/${dinosaurs[4]}.png",
                         fit: BoxFit.fill,
                         width: 250,
                         height: 250,
@@ -413,7 +413,7 @@ class AvatarMenu2 extends StatelessWidget {
                         ),
                         Expanded(
                           child: Text(
-                            "4",
+                            "5",
                             style: TextStyle(
                               fontSize: 20.0,
                               fontStyle: FontStyle.normal,
@@ -437,7 +437,7 @@ class AvatarMenu2 extends StatelessWidget {
                         ),
                         Expanded(
                           child: Text(
-                            "20",
+                            "80",
                             style: TextStyle(
                               fontSize: 20.0,
                               fontStyle: FontStyle.normal,
@@ -461,7 +461,7 @@ class AvatarMenu2 extends StatelessWidget {
                         ),
                         Expanded(
                           child: Text(
-                            "5",
+                            "8",
                             style: TextStyle(
                               fontSize: 20.0,
                               fontStyle: FontStyle.normal,
@@ -485,7 +485,7 @@ class AvatarMenu2 extends StatelessWidget {
                         ),
                         Expanded(
                           child: Text(
-                            "3",
+                            "10",
                             style: TextStyle(
                               fontSize: 20.0,
                               fontStyle: FontStyle.normal,
@@ -509,7 +509,7 @@ class AvatarMenu2 extends StatelessWidget {
                         ),
                         Expanded(
                           child: Text(
-                            "1",
+                            "3",
                             style: TextStyle(
                               fontSize: 20.0,
                               fontStyle: FontStyle.normal,
@@ -533,7 +533,7 @@ class AvatarMenu2 extends StatelessWidget {
                         ),
                         Expanded(
                           child: Text(
-                            "3",
+                            "8",
                             style: TextStyle(
                               fontSize: 20.0,
                               fontStyle: FontStyle.normal,
@@ -570,7 +570,7 @@ class AvatarMenu3 extends StatelessWidget {
 
   int dinosaurLevel = 0;
 
-  String dinosaurName = "ガオー";
+  String dinosaurName = "ゴッドザウルス";
 
   @override
   Widget build(BuildContext context) {
@@ -602,7 +602,7 @@ class AvatarMenu3 extends StatelessWidget {
                     flex: 1,
                     child: Center(
                       child: Image.asset(
-                        "images/${dinosaurs[dinosaurLevel]}.png",
+                        "images/${dinosaurs[5]}.png",
                         fit: BoxFit.fill,
                         width: 250,
                         height: 250,
@@ -645,7 +645,7 @@ class AvatarMenu3 extends StatelessWidget {
                       ),
                       Expanded(
                         child: Text(
-                          "4",
+                          "5",
                           style: TextStyle(
                             fontSize: 20.0,
                             fontStyle: FontStyle.normal,
@@ -669,7 +669,7 @@ class AvatarMenu3 extends StatelessWidget {
                       ),
                       Expanded(
                         child: Text(
-                          "20",
+                          "999",
                           style: TextStyle(
                             fontSize: 20.0,
                             fontStyle: FontStyle.normal,
@@ -693,7 +693,7 @@ class AvatarMenu3 extends StatelessWidget {
                       ),
                       Expanded(
                         child: Text(
-                          "5",
+                          "999",
                           style: TextStyle(
                             fontSize: 20.0,
                             fontStyle: FontStyle.normal,
@@ -717,7 +717,7 @@ class AvatarMenu3 extends StatelessWidget {
                       ),
                       Expanded(
                         child: Text(
-                          "3",
+                          "999",
                           style: TextStyle(
                             fontSize: 20.0,
                             fontStyle: FontStyle.normal,
@@ -741,7 +741,7 @@ class AvatarMenu3 extends StatelessWidget {
                       ),
                       Expanded(
                         child: Text(
-                          "1",
+                          "999",
                           style: TextStyle(
                             fontSize: 20.0,
                             fontStyle: FontStyle.normal,
@@ -765,7 +765,7 @@ class AvatarMenu3 extends StatelessWidget {
                       ),
                       Expanded(
                         child: Text(
-                          "3",
+                          "999",
                           style: TextStyle(
                             fontSize: 20.0,
                             fontStyle: FontStyle.normal,
