@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:team4/timetable2.dart';
 import 'package:team4/util/hexcolor.dart';
+import 'plan.dart';
 
 void main() => runApp(new MaterialApp(
       home: HomeWork(),
@@ -8,16 +10,10 @@ void main() => runApp(new MaterialApp(
 //      home: HomeWork(),
 //    ));
 
-class HomeWork extends StatefulWidget {
+class HomeWork extends StatelessWidget {
   HomeWork({this.planTimes});
+
   final List<List<bool>> planTimes; //予定入力画面で予定ありとして選択した枠がtrueになっている
-
-  @override
-  _HomeWorkState createState() => _HomeWorkState();
-}
-
-class _HomeWorkState extends State<HomeWork> {
-  var height = AppBar().preferredSize.height;
 
   final List<HomeWorkDetail> homeWorkList = HomeWorkDetail.getHomeWorkDetail();
 
@@ -26,7 +22,6 @@ class _HomeWorkState extends State<HomeWork> {
   static int _english = 0;
   static int _socialStudies = 0;
   static int _science = 0;
-
 
   @override
   Widget build(BuildContext context) {
@@ -47,31 +42,38 @@ class _HomeWorkState extends State<HomeWork> {
   Widget homeWorkCheck(HomeWorkDetail homeworkdetail, BuildContext context) {
     return InkWell(
       onTap: () => {
-//                     _navigateToNext(context, homeworkdetail.subject)
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) {
+            return MyHomePage(sub: homeworkdetail.subject, occ: planTimes);
+          }),
+        )
       },
 //      child: Padding(
 //        padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 10),
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          height: (MediaQuery.of(context).size.height-height)/5,
-          //margin: EdgeInsets.all(10.0),
-          decoration: BoxDecoration(
-              color: HexColor(homeworkdetail.color).withOpacity(0.5),
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        height: (MediaQuery.of(context).size.height) / 5,
+        //margin: EdgeInsets.all(10.0),
+        decoration: BoxDecoration(
+          color: HexColor(homeworkdetail.color).withOpacity(0.5),
 //              borderRadius: BorderRadius.circular(7.0)
-              ),
-          child: Center(
-            child: Text(
-              homeworkdetail.subject,
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17.0),
-            ),
+        ),
+        child: Center(
+          child: Text(
+            homeworkdetail.subject,
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17.0),
           ),
         ),
+      ),
 //      ),
     );
   }
-//  void _navigateToNext(BuildContext context, String sub) {
-//    Navigator.push(context, new MaterialPageRoute(builder: (context) =>
-//    new NewPage(sub: sub)));
+
+//  void _navigateToNext(BuildContext context, String sub, List<List<bool>> occ) {
+//    Navigator.push(
+//        context,
+//        new MaterialPageRoute(
+//            builder: (context) => new MyHomePage(sub: sub, occ: occ)));
 //  }
 }
 
