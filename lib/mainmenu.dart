@@ -20,6 +20,10 @@ class _MainAppMenuState extends State<MainAppMenu> {
 
   int dinosaurLevel = 0;
 
+  int _dinosaurHitPoint = 5;
+
+  bool hasAvatar = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,10 +52,9 @@ class _MainAppMenuState extends State<MainAppMenu> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Spacer(),
               Container(
                 margin: EdgeInsets.only(top: 20.0),
-                padding: EdgeInsets.all(12.0),
+                padding: EdgeInsets.all(10.0),
                 decoration: BoxDecoration(
                     color: Colors.transparent,
                     border: Border.all(
@@ -69,6 +72,58 @@ class _MainAppMenuState extends State<MainAppMenu> {
                   ),
                 ),
               ),
+              Center(
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: Text(
+                        "     HP",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15.0,
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Image.asset(
+                        "images/hitpoint.png",
+                        width: 50,
+                        height: 50,
+                      ),
+                    ),
+                    Expanded(
+                      child: Image.asset(
+                        "images/hitpoint.png",
+                        width: 50,
+                        height: 50,
+                      ),
+                    ),
+                    Expanded(
+                      child: Image.asset(
+                        "images/hitpoint.png",
+                        width: 50,
+                        height: 50,
+                      ),
+                    ),
+                    Expanded(
+                      child: Image.asset(
+                        "images/hitpoint.png",
+                        width: 50,
+                        height: 50,
+                      ),
+                    ),
+                    Expanded(
+                      child: Image.asset(
+                        "images/hitpoint.png",
+                        color: Color.fromRGBO(255, 255, 255, 0.5),
+                        colorBlendMode: BlendMode.modulate,
+                        width: 50,
+                        height: 50,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               Spacer(flex: 1),
               Center(
                 child: Image.asset(
@@ -84,13 +139,30 @@ class _MainAppMenuState extends State<MainAppMenu> {
                 children: <Widget>[
                   RaisedButton(
                     onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return WeekPlanPage(); //予定入力のクラスを指定
-                          },
-                        ),
-                      );
+                      if(hasAvatar) {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return WeekPlanPage(); //予定入力のクラスを指定
+                            },
+                          ),
+                        );
+                      }else{
+                        setState(() {
+                          Scaffold.of(context).showSnackBar(new SnackBar(
+                            content: new Text(
+                              "Make avatar in advance",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            duration: const Duration(seconds: 1),
+                            backgroundColor: Colors.yellowAccent.shade200,
+                          ));
+                        });
+                      }
                     },
                     color: Colors.green,
                     child: Text(
@@ -103,26 +175,50 @@ class _MainAppMenuState extends State<MainAppMenu> {
                   ),
                   RaisedButton(
                     onPressed: () {
-                      setState(() {
-                        dinosaurLevel = (dinosaurLevel + 1) % dinosaurs.length;
-                        Scaffold.of(context).showSnackBar(new SnackBar(
-                          content: new Text(
-                            "Dinosaur\'s Level UP!",
-                            style: TextStyle(
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.bold,
+                      if(hasAvatar) {
+                        setState(() {
+                          dinosaurLevel = (dinosaurLevel + 1) % dinosaurs.length;
+                          Scaffold.of(context).showSnackBar(new SnackBar(
+                            content: new Text(
+                              "Dinosaur\'s Level UP!",
+                              style: TextStyle(
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
+                            backgroundColor: Colors.redAccent.shade200,
+                          ));
+                        });
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return HomeWork();
+                            },
                           ),
-                          backgroundColor: Colors.redAccent.shade200,
-                        ));
-                      });
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return HomeWork();
-                          },
-                        ),
-                      );
+                        );
+//                        Navigator.of(context).push(
+//                          MaterialPageRoute(
+//                            builder: (context) {
+//                              return WeekPlanPage(); //予定入力のクラスを指定
+//                            },
+//                          ),
+//                        );
+                      }else{
+                        setState(() {
+                          Scaffold.of(context).showSnackBar(new SnackBar(
+                            content: new Text(
+                              "Make avatar in advance",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            duration: const Duration(seconds: 1),
+                            backgroundColor: Colors.yellowAccent.shade200,
+                          ));
+                        });
+                      }
                     },
                     color: Colors.green,
                     child: Text(
@@ -135,6 +231,7 @@ class _MainAppMenuState extends State<MainAppMenu> {
                   ),
                   RaisedButton(
                     onPressed: () {
+                      hasAvatar = true;
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (context) {
