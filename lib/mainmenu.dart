@@ -10,10 +10,11 @@ class MainAppMenu extends StatefulWidget {
 
 class _MainAppMenuState extends State<MainAppMenu> {
   final List dinosaurs = [
+    "eggBox",
     "eggDinosaur",
+    "dinosaur_green",
     "dinosaur_blue",
     "dinosaur_brown",
-    "dinosaur_green",
     "dinosaur_red",
     "dinosaur_yellow",
   ];
@@ -63,7 +64,7 @@ class _MainAppMenuState extends State<MainAppMenu> {
                     borderRadius: BorderRadius.circular(12.0)),
                 child: Center(
                   child: Text(
-                    "Level.${dinosaurLevel + 1} ${dinosaurs[dinosaurLevel].toString().toUpperCase()}",
+                    "Level.${dinosaurLevel} ${dinosaurs[dinosaurLevel].toString().toUpperCase()}",
                     style: TextStyle(
                       color: Colors.blue,
                       fontSize: 20.0,
@@ -139,7 +140,7 @@ class _MainAppMenuState extends State<MainAppMenu> {
                 children: <Widget>[
                   RaisedButton(
                     onPressed: () {
-                      if(hasAvatar) {
+                      if (hasAvatar) {
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) {
@@ -147,7 +148,7 @@ class _MainAppMenuState extends State<MainAppMenu> {
                             },
                           ),
                         );
-                      }else{
+                      } else {
                         setState(() {
                           Scaffold.of(context).showSnackBar(new SnackBar(
                             content: new Text(
@@ -175,9 +176,10 @@ class _MainAppMenuState extends State<MainAppMenu> {
                   ),
                   RaisedButton(
                     onPressed: () {
-                      if(hasAvatar) {
+                      if (hasAvatar) {
                         setState(() {
-                          dinosaurLevel = (dinosaurLevel + 1) % dinosaurs.length;
+                          dinosaurLevel =
+                              (dinosaurLevel + 1) % dinosaurs.length;
                           Scaffold.of(context).showSnackBar(new SnackBar(
                             content: new Text(
                               "Dinosaur\'s Level UP!",
@@ -203,7 +205,7 @@ class _MainAppMenuState extends State<MainAppMenu> {
 //                            },
 //                          ),
 //                        );
-                      }else{
+                      } else {
                         setState(() {
                           Scaffold.of(context).showSnackBar(new SnackBar(
                             content: new Text(
@@ -232,6 +234,9 @@ class _MainAppMenuState extends State<MainAppMenu> {
                   RaisedButton(
                     onPressed: () {
                       hasAvatar = true;
+                      setState(() {
+                        dinosaurLevel = 1;
+                      });
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (context) {
