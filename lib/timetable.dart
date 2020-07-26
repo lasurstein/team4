@@ -1,26 +1,24 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:time_machine/time_machine.dart';
 import 'package:timetable/timetable.dart';
-
-
-import 'main.dart';
+import 'timetable/positioning_demo.dart';
+import 'timetable/utils.dart';
 
 void main() async {
-  // Call these two functions before `runApp()`.
+  setTargetPlatformForDesktop();
+
   WidgetsFlutterBinding.ensureInitialized();
   await TimeMachine.initialize({'rootBundle': rootBundle});
-
-  runApp(TimeTable());
+  runApp(ExampleApp(child: TimetableExample()));
 }
 
-class TimeTable extends StatefulWidget {
+class TimetableExample extends StatefulWidget {
   @override
-  _TimeTableState createState() => _TimeTableState();
+  _TimetableExampleState createState() => _TimetableExampleState();
 }
 
-class _TimeTableState extends State<TimeTable> {
+class _TimetableExampleState extends State<TimetableExample> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   TimetableController<BasicEvent> _controller;
 
@@ -30,18 +28,18 @@ class _TimeTableState extends State<TimeTable> {
 
     _controller = TimetableController(
       // A basic EventProvider containing a single event:
-      // eventProvider: EventProvider.list([
-      //   BasicEvent(
-      //     id: 0,
-      //     title: 'My Event',
-      //     color: Colors.blue,
-      //     start: LocalDate.today().at(LocalTime(13, 0, 0)),
-      //     end: LocalDate.today().at(LocalTime(15, 0, 0)),
-      //   ),
-      // ]),
+       eventProvider: EventProvider.list([
+         BasicEvent(
+           id: 0,
+           title: 'My Event',
+           color: Colors.blue,
+           start: LocalDate.today().at(LocalTime(13, 0, 0)),
+           end: LocalDate.today().at(LocalTime(15, 0, 0)),
+         ),
+       ]),
 
       // For a demo of overlapping events, use this one instead:
-      eventProvider: positioningDemoEventProvider,
+//      eventProvider: positioningDemoEventProvider,
 
       // Or even this short example using a Stream:
       // eventProvider: EventProvider.stream(
