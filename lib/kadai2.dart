@@ -4,8 +4,14 @@ import 'package:team4/util/hexcolor.dart';
 void main() => runApp(new MaterialApp(
       home: HomeWork(),
     ));
+//void main() => runApp(new MaterialApp(
+//      home: HomeWork(),
+//    ));
 
 class HomeWork extends StatefulWidget {
+  HomeWork({this.planTimes});
+  final List<List<bool>> planTimes; //予定入力画面で予定ありとして選択した枠がtrueになっている
+
   @override
   _HomeWorkState createState() => _HomeWorkState();
 }
