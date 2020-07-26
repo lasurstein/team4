@@ -12,7 +12,7 @@ class _TestQuizAppState extends State<TestQuizApp> {
     Question.name("Gitはバージョン管理システムである.", true),
     Question.name("Fluttarはプログラミング言語の一種である.", false),
     Question.name("dartはJavaScriptの代替となることを目的としてつくられた.", true),
-    Question.name("問題は以上です!", true),
+    Question.name("問題は以上です!\n恐竜の様子を見てみましょう!", true),
   ];
 
   @override
@@ -94,16 +94,15 @@ class _TestQuizAppState extends State<TestQuizApp> {
       if (userChoice == questionBank[_currentQuestionIndex].isCorrect) {
         final snackbar = SnackBar(
             backgroundColor: Colors.green,
-            //duration: Duration(microseconds: 10000),
+            duration: const Duration(seconds: 1),
             content: Text("正解!"));
         Scaffold.of(context).showSnackBar(snackbar);
         _nextQuestion();
       } else {
         final snackbar = SnackBar(
             backgroundColor: Colors.red,
-            //duration: Duration(microseconds: 10000),
+            duration: const Duration(seconds: 1),
             content: Text("不正解!"));
-
         Scaffold.of(context).showSnackBar(snackbar);
         _nextQuestion();
       }

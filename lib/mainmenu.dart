@@ -39,16 +39,6 @@ class _MainAppMenuState extends State<MainAppMenu> {
         centerTitle: true,
       ),
       backgroundColor: Colors.white,
-//      bottomNavigationBar: BottomNavigationBar(
-//        items: [
-//          BottomNavigationBarItem(
-//              icon: Icon(Icons.arrow_back), title: Text("Botton1")),
-//          BottomNavigationBarItem(
-//              icon: Icon(Icons.wb_sunny), title: Text("Botton2")),
-//          BottomNavigationBarItem(
-//              icon: Icon(Icons.arrow_forward), title: Text("Botton3")),
-//        ],
-//      ),
       body: Builder(
         builder: (BuildContext context) => Container(
           child: Column(
