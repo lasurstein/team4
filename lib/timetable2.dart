@@ -29,60 +29,91 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flutter Timetable View Demo'),
+        title: Text(''),
       ),
       body: TimetableView(
         laneEventsList: _buildLaneEvents(),
       ),
     );
-
   }
 
   List<LaneEvents> _buildLaneEvents() {
     return [
-      _LaneEvent(),
       LaneEvents(
         lane: Lane(name: '月'),
         events: [
           TableEvent(
-            title: 'An event 1',
+            title: '',
+            backgroundColor: Colors.redAccent,
             start: TableEventTime(hour: 8, minute: 0),
-            end: TableEventTime(hour: 10, minute: 0),
+            end: TableEventTime(hour: 16, minute: 0),
           ),
-          TableEvent(
-            title: 'An event 2',
-            start: TableEventTime(hour: 12, minute: 0),
-            end: TableEventTime(hour: 13, minute: 20),
-          ),
+
         ],
       ),
       LaneEvents(
         lane: Lane(name: '火'),
         events: [
           TableEvent(
-            title: 'An event 3',
+            title: '',
             backgroundColor: Colors.redAccent,
-            start: TableEventTime(hour: 10, minute: 10),
-            end: TableEventTime(hour: 11, minute: 45),
+            start: TableEventTime(hour: 8, minute: 00),
+            end: TableEventTime(hour: 18, minute: 30),
+          ),
+        ],
+      ),
+      LaneEvents(
+        lane: Lane(name: '水'),
+        events: [
+          TableEvent(
+            title: '',
+            backgroundColor: Colors.redAccent,
+            start: TableEventTime(hour: 8, minute: 00),
+            end: TableEventTime(hour: 18, minute: 30),
+          ),
+        ],
+      ),
+      LaneEvents(
+        lane: Lane(name: '木'),
+        events: [
+          TableEvent(
+            title: '',
+            backgroundColor: Colors.redAccent,
+            start: TableEventTime(hour: 8, minute: 00),
+            end: TableEventTime(hour: 18, minute: 30),
+          ),
+        ],
+      ),
+      LaneEvents(
+        lane: Lane(name: '金'),
+        events: [
+          TableEvent(
+            title: '',
+            backgroundColor: Colors.redAccent,
+            start: TableEventTime(hour: 8, minute: 00),
+            end: TableEventTime(hour: 18, minute: 30),
           ),
         ],
       ),
 
 
     ];
-    LaneEvent() {
-      for ( int i = 0; i < widget.occ[i].length; i++){
-        for (int j = 0;j < 27; j++){
-          if (widget.occ[i][j] == true) {
-            return LaneEvents(lane: Lane(name: "$i"), events: [TableEvent(
-                backgroundColor: Colors.redAccent,
-                start: TableEventTime(hour: 2, minute: 30 * (j % 2)),
-                end: TableEventTime(hour: 3, minute: 30 * ((j + 1) % 2))
-            )]
-            );
-          }
-        }
-      }
-    }
+  }
+}
 
+
+//    LaneEvent(occupy: widget.occ) {
+//      for ( int i = 0; int j = 0;i < widget.occ[i].length; i++){
+//        for (int j = 0;j < 27; j++){
+//          if (widget.occ[i][j] == true) {
+//            return LaneEvents(lane: Lane(name: "$i"), events: [TableEvent(
+//                backgroundColor: Colors.redAccent,
+//                start: TableEventTime(hour: 2, minute: 30 * (j % 2)),
+//                end: TableEventTime(hour: 3, minute: 30 * ((j + 1) % 2))
+//            )]
+//            );
+//          }
+//        }
+//      }
+//    }
 
