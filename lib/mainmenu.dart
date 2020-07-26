@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:team4/avatar/avatormenu.dart';
 import 'package:team4/kadai2.dart';
 import 'package:team4/plan.dart';
+import 'package:team4/weeklytest/testpage.dart';
 
 class MainAppMenu extends StatefulWidget {
   @override
@@ -152,10 +153,10 @@ class _MainAppMenuState extends State<MainAppMenu> {
                         setState(() {
                           Scaffold.of(context).showSnackBar(new SnackBar(
                             content: new Text(
-                              "Make avatar in advance",
+                              "アバターを作成してください",
                               style: TextStyle(
                                 color: Colors.black,
-                                fontSize: 20.0,
+                                fontSize: 15.0,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -194,7 +195,7 @@ class _MainAppMenuState extends State<MainAppMenu> {
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) {
-                              return HomeWork();
+                              return TestQuizApp();
                             },
                           ),
                         );
@@ -209,10 +210,10 @@ class _MainAppMenuState extends State<MainAppMenu> {
                         setState(() {
                           Scaffold.of(context).showSnackBar(new SnackBar(
                             content: new Text(
-                              "Make avatar in advance",
+                              "予定を入力してください",
                               style: TextStyle(
                                 color: Colors.black,
-                                fontSize: 20.0,
+                                fontSize: 15.0,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -224,7 +225,7 @@ class _MainAppMenuState extends State<MainAppMenu> {
                     },
                     color: Colors.green,
                     child: Text(
-                      "学習課題",
+                      "週末テスト",
                       style: TextStyle(
                         fontSize: 20.0,
                         color: Colors.white,
