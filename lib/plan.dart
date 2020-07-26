@@ -49,9 +49,10 @@ class _WeekPlanPageState extends State<WeekPlanPage>
     return context.ancestorStateOfType(TypeMatcher<_WeekPlanPageState>());
   }
 
-  List<List<bool>> _selectedTime = List.generate(
-      7, (_) => List.generate(31, (_) => false));
+  List<List<bool>> _selectedTime =
+  List.generate(7, (_) => List.generate(31, (_) => false));
 
+  TextStyle _tabTextStyle;
   @override
   void initState() {
     super.initState();
@@ -60,7 +61,6 @@ class _WeekPlanPageState extends State<WeekPlanPage>
       setState(() {
         _selectTabIndex = _tabController.index;
       });
-
       print("Selected Index: " + _tabController.index.toString());
     });
   }
@@ -73,16 +73,13 @@ class _WeekPlanPageState extends State<WeekPlanPage>
 
   void selectItems(int numberOfWeek, int time) {
     print(_selectedTime[numberOfWeek][time]);
-    setState(() => {
+    setState(() =>
+    {
       _selectedTime[numberOfWeek][time] =
       (_selectedTime[numberOfWeek][time]) ? false : true
     });
     print(
         '${numberOfWeek}, ${time} pushed. after:${_selectedTime[numberOfWeek][time]}');
-  }
-
-  void selectTabs() {
-
   }
 
   final List<DayOfWeek> weekData = [
@@ -151,25 +148,39 @@ class _WeekPlanPageState extends State<WeekPlanPage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text('予定入力'),
+          title: Text('今週の予定を入力しよう！'),
           bottom: new TabBar(
               controller: _tabController,
               tabs: weekData
                   .map((w) =>
-                  Tab(child: Container(child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        Text("${w.dayOfWeek}", style: TextStyle(fontSize: (_selectTabIndex == w.numberOfWeek - 1) ? 20.0 : 20.0)),
-                        if(_selectTabIndex == w.numberOfWeek - 1) Text("${w.month}/${w.day}", style: TextStyle(fontSize: 10.0)),
-                      ]))))
+                  Tab(
+                      child: Container(
+                          child: Center(
+                              child: Column(
+                                  crossAxisAlignment:
+                                  CrossAxisAlignment.center,
+                                  children: <Widget>[
+                                    AnimatedDefaultTextStyle(
+                                      style: TextStyle(fontSize: (_selectTabIndex == w.numberOfWeek - 1) ? 18.0 : 15.0),
+                                      duration: Duration(milliseconds: 170),
+                                      child:Text('${w.dayOfWeek}'),
+                                    ),
+                                    AnimatedOpacity(
+                                      opacity: (_selectTabIndex == w.numberOfWeek - 1) ? 1.0 : 0.0,
+                                      duration: Duration(milliseconds: 170),
+                                      child:Text("${w.month}/${w.day}", style: TextStyle(fontSize: 12.0)),
+                                    ),
+                                  ])))))
                   .toList())),
       body: TabBarView(
           controller: _tabController,
-          children: weekData.map((w) =>
-              DayPlan(weekDate: w,
+          children: weekData
+              .map((w) =>
+              DayPlan(
+                  weekDate: w,
                   selectedTimeOfDay: _selectedTime[w.numberOfWeek - 1],
-                  itemSelector: selectItems)).toList()
-      ),
+                  itemSelector: selectItems))
+              .toList()),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           Navigator.of(context).push(
@@ -181,8 +192,8 @@ class _WeekPlanPageState extends State<WeekPlanPage>
             ),
           );
         },
-        label: Text('完了！'),
-        icon: Icon(Icons.thumb_up),
+        label: Text('教科選択'),
+        icon: Icon(Icons.chevron_right),
         backgroundColor: Colors.green,
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
@@ -200,22 +211,24 @@ class DayPlan extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
         scrollDirection: Axis.vertical,
-        padding: EdgeInsets.only(top: 3.0, bottom: 3.0),
+        padding: EdgeInsets.only(top: 2.0, bottom: 2.0),
         shrinkWrap: true,
         itemBuilder: (context, i) {
           if (i < 31) {
-            return new Container (
+            return new Container(
                 child: ListTileTheme(
                     selectedColor: Colors.grey,
                     child: ListTile(
-                      title: Text('${(7 + (i - i % 2) / 2).round()}:${i.isOdd
-                          ? '30'
-                          : '00'}', textAlign: TextAlign.center,
+                      title: Text(
+                          '${(7 + (i - i % 2) / 2).round()}:${i.isOdd
+                              ? '30'
+                              : '00'}',
+                          textAlign: TextAlign.center,
                           style: TextStyle(fontSize: 20.0)),
                       selected: selectedTimeOfDay[i],
                       onTap: () {
-                        _WeekPlanPageState.of(context).selectItems(
-                            weekDate.numberOfWeek - 1, i);
+                        _WeekPlanPageState.of(context)
+                            .selectItems(weekDate.numberOfWeek - 1, i);
                       },
                     )),
                 decoration: new BoxDecoration(
@@ -227,8 +240,7 @@ class DayPlan extends StatelessWidget {
                       color: Color(0xFFC0C0C0),
                     ),
                   ),
-                )
-            );
+                ));
           }
         });
   }
