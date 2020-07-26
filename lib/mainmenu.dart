@@ -10,10 +10,11 @@ class MainAppMenu extends StatefulWidget {
 
 class _MainAppMenuState extends State<MainAppMenu> {
   final List dinosaurs = [
+    "eggBox",
     "eggDinosaur",
+    "dinosaur_green",
     "dinosaur_blue",
     "dinosaur_brown",
-    "dinosaur_green",
     "dinosaur_red",
     "dinosaur_yellow",
   ];
@@ -63,7 +64,7 @@ class _MainAppMenuState extends State<MainAppMenu> {
                     borderRadius: BorderRadius.circular(12.0)),
                 child: Center(
                   child: Text(
-                    "Level.${dinosaurLevel + 1} ${dinosaurs[dinosaurLevel].toString().toUpperCase()}",
+                    "Level.${dinosaurLevel} ${dinosaurs[dinosaurLevel].toString().toUpperCase()}",
                     style: TextStyle(
                       color: Colors.blue,
                       fontSize: 20.0,
@@ -232,6 +233,9 @@ class _MainAppMenuState extends State<MainAppMenu> {
                   RaisedButton(
                     onPressed: () {
                       hasAvatar = true;
+                      setState(() {
+                        dinosaurLevel = 1;
+                      });
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (context) {
